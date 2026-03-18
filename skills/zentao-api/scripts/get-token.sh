@@ -20,15 +20,17 @@ output_and_exit() {
 
 # ── 1. 优先：从缓存文件读取 url、token、account（单次 node 调用）────────────
 if [[ -f "$CACHE_FILE" ]]; then
-  mapfile -t _cache < <(node -e "
+  _cache_url='' _cache_token='' _cache_account=''
+  {
+    IFS= read -r _cache_url
+    IFS= read -r _cache_token
+    IFS= read -r _cache_account
+  } < <(node -e "
 try {
   const d = JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8'));
   process.stdout.write((d.url||'') + '\n' + (d.token||'') + '\n' + (d.account||'') + '\n');
 } catch(e) { process.stdout.write('\n\n\n'); }
 " "$CACHE_FILE" 2>/dev/null || printf '\n\n\n')
-  _cache_url="${_cache[0]:-}"
-  _cache_token="${_cache[1]:-}"
-  _cache_account="${_cache[2]:-}"
 
   # 用缓存补全缺失的环境变量
   [[ -z "${ZENTAO_URL:-}"     && -n "$_cache_url"     ]] && ZENTAO_URL="$_cache_url"

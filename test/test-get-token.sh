@@ -214,8 +214,7 @@ EXIT_CODE=0
 OUTPUT=$(ZENTAO_TOKEN="env_token_value" ZENTAO_URL="http://zentao.test" ZENTAO_ACCOUNT="admin" \
   HOME="$FAKE_HOME" PATH="$MOCK_BIN:$PATH" bash "$SCRIPT" 2>&1) || EXIT_CODE=$?
 if [[ -f "$FAKE_HOME/.zentao-token.json" ]]; then
-  mapfile -t _fields < <(read_cache)
-  _ct="${_fields[0]:-}" _cu="${_fields[1]:-}" _ca="${_fields[2]:-}"
+  { IFS= read -r _ct; IFS= read -r _cu; IFS= read -r _ca; } < <(read_cache)
   if [[ "$_ct" == "env_token_value" && "$_cu" == "http://zentao.test" && "$_ca" == "admin" ]]; then
     pass "ZENTAO_TOKEN 路径写入缓存，下次无需环境变量"
   else
@@ -361,8 +360,7 @@ mock_curl '{"data": {"token": "written_token"}}'
 run_script
 _out_tok=$(get_field ZENTAO_TOKEN) _out_url=$(get_field ZENTAO_URL) _out_acc=$(get_field ZENTAO_ACCOUNT)
 if [[ -f "$FAKE_HOME/.zentao-token.json" ]]; then
-  mapfile -t _fields < <(read_cache)
-  _ct="${_fields[0]:-}" _cu="${_fields[1]:-}" _ca="${_fields[2]:-}"
+  { IFS= read -r _ct; IFS= read -r _cu; IFS= read -r _ca; } < <(read_cache)
   if [[ "$_ct" == "written_token" && "$_cu" == "http://zentao.test" && "$_ca" == "admin" \
      && "$_out_tok" == "written_token" && "$_out_url" == "http://zentao.test" && "$_out_acc" == "admin" ]]; then
     pass "token、url、account 均已正确写入缓存，且输出一致"
