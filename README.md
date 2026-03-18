@@ -13,18 +13,26 @@
 
 你可以在 OpenClaw、Cursor、Claude Code 等工具中使用。
 
-<details open>
-  <summary>OpenClaw</summary>
-  <ol>
-    <li>在终端执行 `clawdhub install zentao-skills`，此命令可以直接发送给 AI 执行</li>
-    <li>按下文“鉴权与 Token 获取”准备好服务器地址与 Token（或账号密码）</li>
-    <li>在对话中直接提出你的需求，例如：</li>
-    <ul>
-      <li>“查询某项目本周新增 Bug 列表，并按严重程度分组”</li>
-      <li>“把某个需求状态更新为已关闭，并备注原因”</li>
-    </ul>
-  </ol>
-</details>
+下面以 🦀 **OpenClaw** 为例：
+
+1. 在终端执行 `clawdhub install zentao-skills`，或者将如下内容发送给 OpenClaw 会话：
+
+    ```txt
+    执行命令 `clawdhub install zentao-skills` 安装禅道 Skills
+    ```
+
+2. 按下文“鉴权与 Token 获取”准备好服务器地址与 Token（或账号密码）
+3. 在对话中直接提出你的需求，例如：
+
+    ```txt
+    查询某项目本周新增 Bug 列表，并按严重程度分组
+    ```
+
+    ```txt
+    把某个需求状态更新为已关闭，并备注原因
+    ```
+
+在其他工具中使用参考：
 
 <details>
   <summary>Cursor</summary>
