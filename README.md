@@ -4,7 +4,7 @@
 
 ## 这是什么
 
-本仓库提供基于 [禅道 RESTful API 2.0](https://www.zentao.net/book/api/2309.html) 的 Cursor Skills。
+本仓库提供基于 [禅道 RESTful API 2.0](https://www.zentao.net/book/api/2309.html) 的 AI Skills。
 
 - **当前包含**：`skills/zentao-api/`（查询并操作禅道数据，如项目、执行、需求、Bug、任务、用例等，取决于接口覆盖范围）
 
